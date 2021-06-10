@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <title>Star Wars API</title>
+        <script>
+            // Fetch a list of people from the Star Wars API.
+            function fetchPeople()
+            {
+                fetch("https://swapi.dev/api/people").then(response => response.json()).then(json => displayPeople(json["results"]));
+            }
+            // Displays the list of people fetched by fetchPeople.
+            function displayPeople(peopleList)
+            {
+                for (const i in peopleList)
+                {
+                    console.log(peopleList[i]);
+                }
+            }
+        </script>
+    </head>
+    <body onload="fetchPeople()">
+    </body>
+</html>
