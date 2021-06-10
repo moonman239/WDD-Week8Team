@@ -2,10 +2,14 @@
     <head>
         <title>Star Wars API</title>
         <script>
-            // Fetch a list of people from the Star Wars API.
-            function fetchPeople()
+            let nextURL = "https://swapi.dev/api/people";
+            // Fetch the next list of people from the Star Wars API.
+            function fetchNext()
             {
-                fetch("https://swapi.dev/api/people").then(response => response.json()).then(json => displayPeople(json["results"]));
+                fetch(nextURL).then(response => response.json()).then(json => {
+                    nextURL = json["next"];
+                    return displayPeople(json["results"]);
+                });
             }
             // Displays the list of people fetched by fetchPeople.
             function displayPeople(peopleList)
@@ -25,7 +29,7 @@
             }
         </script>
     </head>
-    <body onload="fetchPeople()">
+    <body onload="fetchNext()">
         <dl id="descriptions">
 
         </dl>
