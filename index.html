@@ -4,7 +4,10 @@
         <script>
             let nextURL = "https://swapi.dev/api/people";
             let previousURL = null;
-            // Fetch the next list of people from the Star Wars API.
+
+            // Fetch a list of people from the Star Wars API.
+            // The "next" parameter tells the function whether to fetch the next list of 10 people,
+            // or the previous list of 10 people.
             function fetchPeople(next=true)
             {
                 let url = "";
