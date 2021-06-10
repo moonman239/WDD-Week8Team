@@ -13,10 +13,14 @@
                 for (const i in peopleList)
                 {
                     const person = peopleList[i];
-                    const personDisplayElement = document.createElement("span");
-                    personDisplayElement.innerHTML = "Name: " + person["name"] + "<br>";
-                    const body = document.getElementsByTagName("body")[0];
-                    body.appendChild(personDisplayElement);
+                    const personDisplayElement = document.createElement("dl");
+                    personDisplayElement.innerHTML = "<dt>Name</dt><dd>" + person["name"] + "</dd>"
+                    personDisplayElement.innerHTML += "<dt>Height</dt><dd>" + person["height"] + "</dd>";
+                    personDisplayElement.innerHTML += "<dt>Mass</dt><dd>" + person["mass"] + "</dd>";
+                    personDisplayElement.innerHTML += "<dt>Hair color</dt><dd>" + person['hair_color'] + "</dd>";
+                    personDisplayElement.innerHTML += "<dt>Skin color</dt><dd>" + person['skin_color'] + "</dd>";
+                    personDisplayElement.innerHTML += "<dt>Eye color:</dt><dd>" + person["eye_color"] + "</dd>";
+                    document.getElementsByTagName("body")[0].appendChild(personDisplayElement);
                 }
             }
         </script>
