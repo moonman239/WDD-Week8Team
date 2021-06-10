@@ -19,6 +19,9 @@
                 fetch(url).then(response => response.json()).then(json => {
                    previousURL = json["previous"];
                     nextURL = json["next"];
+                    // Disable "next" & "previous" buttons if there is no use for them.
+                    document.getElementById("next").disabled = nextURL ? false : true;
+                    document.getElementById("previous").disabled = previousURL ? false : true;
                     return displayPeople(json["results"]);
                 });
             }
@@ -45,6 +48,6 @@
         <div id="descriptionDiv">
 
         </div>
-        <button onclick="fetchPeople()">Next</button> <button onclick="fetchPeople(false)">prev</button>
+        <button id="previous" onclick="fetchPeople(false)">prev</button><button id="next" onclick="fetchPeople()">Next</button> 
     </body>
 </html>
