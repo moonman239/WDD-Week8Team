@@ -3,10 +3,21 @@
         <title>Star Wars API</title>
         <script>
             let nextURL = "https://swapi.dev/api/people";
+            let previousURL = null;
             // Fetch the next list of people from the Star Wars API.
-            function fetchNext()
+            function fetchPeople(next=true)
             {
-                fetch(nextURL).then(response => response.json()).then(json => {
+                let url = "";
+                if (next)
+                {
+                    url = nextURL;
+                }
+                else
+                {
+                    url = previousURL;
+                }
+                fetch(url).then(response => response.json()).then(json => {
+                   previousURL = json["previous"];
                     nextURL = json["next"];
                     return displayPeople(json["results"]);
                 });
@@ -14,6 +25,7 @@
             // Displays the list of people fetched by fetchPeople.
             function displayPeople(peopleList)
             {
+                document.getElementById("descriptionDiv").innerHTML = "";
                 for (const i in peopleList)
                 {
                     const person = peopleList[i];
@@ -29,10 +41,10 @@
             }
         </script>
     </head>
-    <body onload="fetchNext()">
+    <body onload="fetchPeople()">
         <div id="descriptionDiv">
 
         </div>
-        <button onclick="fetchNext()">Next</button> <button onclick="fetchPrevious()">prev</button>
+        <button onclick="fetchPeople()">Next</button> <button onclick="fetchPeople(false)">prev</button>
     </body>
 </html>
